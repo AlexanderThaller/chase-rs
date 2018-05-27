@@ -58,7 +58,7 @@ impl Chaser {
     pub fn run_channel(
         self,
     ) -> Result<(Receiver<SendData>, JoinHandle<Result<(), ChaseError>>), ChaseError> {
-        let (tx, rx) = sync_channel(0);
+        let (tx, rx) = sync_channel(10000);
         let join_handle = Builder::new()
             .name(thread_namer(&self.path))
             .spawn(move || {
